@@ -1,4 +1,7 @@
-const Footer = () => {
+import logo1 from "../../assets/runway marathon loogo.png";
+import logo2 from "../../assets/runway marathon white variant.png";
+
+const Footer = ({ theme }) => {
   return (
     <div>
       {/* Footer */}
@@ -8,8 +11,24 @@ const Footer = () => {
             {/* Logo and Description */}
             <div className="md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">M</span>
+                <div className="w-20 h-20  rounded-lg flex items-center justify-center">
+                  {theme ? (
+                    <>
+                      <img
+                        src={logo1}
+                        className=" w-20 h-20 object-cover  rounded-lg"
+                        alt=""
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        src={logo2}
+                        className=" w-20 h-20 object-cover  rounded-lg"
+                        alt=""
+                      />
+                    </>
+                  )}
                 </div>
                 <span className="text-xl font-semibold text-foreground">
                   Marathon Manager
@@ -65,7 +84,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="/all-marathons"
+                    href="/allmarathons"
                     className="text-muted-foreground hover:text-primary transition-athletic">
                     Browse Marathons
                   </a>

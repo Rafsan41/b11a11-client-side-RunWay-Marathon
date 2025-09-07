@@ -1,6 +1,8 @@
 import { NavLink } from "react-router";
 import { WiDaySunny } from "react-icons/wi";
 import { MdOutlineDarkMode } from "react-icons/md";
+import logo1 from "../../assets/runway marathon loogo.png";
+import logo2 from "../../assets/runway marathon white variant.png";
 
 const NavBar = ({ theme, setTheme }) => {
   const links = (
@@ -8,11 +10,11 @@ const NavBar = ({ theme, setTheme }) => {
       {" "}
       <li>
         {" "}
-        <NavLink>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
         {" "}
-        <NavLink>All Marathon </NavLink>
+        <NavLink to="/allmarathons">All Marathon </NavLink>
       </li>
       <li>
         {" "}
@@ -48,19 +50,36 @@ const NavBar = ({ theme, setTheme }) => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost  font-extrabold text-3xl">
-            RunWay Marathon
-          </a>
+          <div className="flex items-center  font-semibold font-serif  ">
+            {theme ? (
+              <>
+                <img
+                  src={logo1}
+                  className=" w-16 h-16 object-cover  rounded-lg mx-2"
+                  alt=""
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  src={logo2}
+                  className=" w-16 h-16 object-cover rounded-lg mx-2"
+                  alt=""
+                />
+              </>
+            )}
+            <p className="text-4xl hidden lg:block"> RunWay Marathon</p>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-xl">{links}</ul>
         </div>
-        <div className="navbar-end gap-4 text-2xl">
-          <button className="btn">
+        <div className="navbar-end gap-4 ">
+          <button className="btn text-xl">
             <NavLink to="/logIn">LogIn</NavLink>
           </button>
-          <button className="btn">
-            <NavLink to="/register">Registation</NavLink>
+          <button className="btn text-xl">
+            <NavLink to="/signIn">Sign In</NavLink>
           </button>
           <button onClick={() => setTheme(!theme)} className="btn btn-ghost">
             {theme ? <MdOutlineDarkMode size="25" /> : <WiDaySunny size="25" />}
