@@ -10,7 +10,6 @@ import WeeklyRunningTips from "./Componants/WeeklyRunningTips";
 const Home = () => {
   return (
     <div>
-      Home
       <Hero></Hero>
       <Featured></Featured>
       <UpcomingEvents></UpcomingEvents>

@@ -41,7 +41,7 @@ const AllMarathons = () => {
     {
       id: 1,
       title: "Boston Marathon 2025",
-      date: "2025-04-21",
+      date: "2025-04-21", //
       location: "Boston, MA",
       distance: "26.2 miles",
       price: 195,
@@ -432,7 +432,6 @@ const AllMarathons = () => {
   return (
     <div className="min-h-screen bg-background">
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Page Header */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -457,7 +456,7 @@ const AllMarathons = () => {
           {/* Breadcrumb */}
           <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
             <button
-              onClick={() => navigate("/home-landing")}
+              onClick={() => navigate("/")}
               className="hover:text-foreground transition-athletic">
               Home
             </button>
@@ -482,7 +481,7 @@ const AllMarathons = () => {
           className="mb-8"
         />
 
-        {/* Filters */}
+        {/* Filters
         <MarathonFilters
           onSearch={handleSearch}
           onSort={handleSort}
@@ -492,7 +491,7 @@ const AllMarathons = () => {
           filters={filters}
           isLoading={isLoading}
           className="mb-8"
-        />
+        /> */}
 
         {/* Marathon Grid */}
         <MarathonGrid

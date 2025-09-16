@@ -3,8 +3,22 @@ import { WiDaySunny } from "react-icons/wi";
 import { MdOutlineDarkMode } from "react-icons/md";
 import logo1 from "../../assets/runway marathon loogo.png";
 import logo2 from "../../assets/runway marathon white variant.png";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
 
 const NavBar = ({ theme, setTheme }) => {
+  const { user, logOutUser } = useContext(AuthContext);
+
+  const handelLogOut = () => {
+    logOutUser()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.massage);
+      });
+  };
+
   const links = (
     <>
       {" "}
@@ -75,12 +89,23 @@ const NavBar = ({ theme, setTheme }) => {
           <ul className="menu menu-horizontal px-1 text-xl">{links}</ul>
         </div>
         <div className="navbar-end gap-4 ">
-          <button className="btn text-xl">
-            <NavLink to="/logIn">LogIn</NavLink>
-          </button>
-          <button className="btn text-xl">
-            <NavLink to="/signIn">Sign In</NavLink>
-          </button>
+          {user ? <p>{user.email}</p> : <></>}
+          {user ? (
+            <button
+              onClick={handelLogOut}
+              className="btn btn-accent font-semibold text-xl">
+              Sign Out
+            </button>
+          ) : (
+            <>
+              <button className="btn text-xl">
+                <NavLink to="/logIn">LogIn</NavLink>
+              </button>
+              <button className="btn text-xl">
+                <NavLink to="/signIn">Sign In</NavLink>
+              </button>
+            </>
+          )}
           <button onClick={() => setTheme(!theme)} className="btn btn-ghost">
             {theme ? <MdOutlineDarkMode size="25" /> : <WiDaySunny size="25" />}
           </button>
