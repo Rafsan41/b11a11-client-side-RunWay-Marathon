@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import Button from "../../../components/ui/Button";
+import { use } from "react";
+import MarathonCard from "../../../components/ui/MarathonCard";
 
-const UpcomingEvents = () => {
+const UpcomingEvents = ({ upCommingEventPromise }) => {
+  const upCommingEvent = use(upCommingEventPromise);
   return (
     <div>
       <div>
@@ -20,6 +23,11 @@ const UpcomingEvents = () => {
             </div>
 
             {/* Events Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+              {upCommingEvent.map((event) => (
+                <MarathonCard key={event._id} event={event}></MarathonCard>
+              ))}
+            </div>
           </div>
         </section>
       </div>

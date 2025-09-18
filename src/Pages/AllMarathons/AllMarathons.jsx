@@ -9,6 +9,19 @@ import MarathonFilters from "./Componants/MarathonFilters";
 import MarathonGrid from "./Componants/MarathonGrid";
 import MarathonStats from "./Componants/MarathonStats";
 
+const alleventPromise = fetch("http://localhost:5000/allEvent").then((res) =>
+  res.json()
+);
+const eventPromise = fetch("http://localhost:5000/featuredEvent").then((res) =>
+  res.json()
+);
+const upCommingEventPromise = fetch(
+  "http://localhost:5000/upCommingEvent"
+).then((res) => res.json());
+const openEventPromise = fetch("http://localhost:5000/openEvent").then((res) =>
+  res.json()
+);
+
 const AllMarathons = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -467,19 +480,13 @@ const AllMarathons = () => {
 
         {/* Stats */}
         <MarathonStats
-          totalMarathons={stats?.totalMarathons}
-          upcomingMarathons={stats?.upcomingMarathons}
-          openRegistrations={stats?.openRegistrations}
-          totalParticipants={stats?.totalParticipants}
-          className="mb-8"
+          alleventPromise={alleventPromise}
+          openEventPromise={openEventPromise}
+          upCommingEventPromise={upCommingEventPromise}
         />
 
         {/* Featured Marathons */}
-        <FeaturedMarathons
-          featuredMarathons={featuredMarathons}
-          onRegister={handleRegister}
-          className="mb-8"
-        />
+        <FeaturedMarathons eventPromise={eventPromise} />
 
         {/* Filters
         <MarathonFilters
@@ -494,16 +501,7 @@ const AllMarathons = () => {
         /> */}
 
         {/* Marathon Grid */}
-        <MarathonGrid
-          marathons={paginatedMarathons}
-          isLoading={isLoading || isLoadingMore}
-          hasMore={
-            hasMore && paginatedMarathons?.length < filteredMarathons?.length
-          }
-          onLoadMore={handleLoadMore}
-          onRegister={handleRegister}
-          viewMode={viewMode}
-        />
+        <MarathonGrid alleventPromise={alleventPromise} />
       </main>
     </div>
   );
